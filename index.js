@@ -1,5 +1,16 @@
-var TIMEOUT_IN_SECS = 3 * 60
-var TEMPLATE = '<h1><span class="js-timer-minutes">00</span>:<span class="js-timer-seconds">00</span></h1>'
+var TIMEOUT_IN_SECS = 3 * 60;
+var TEMPLATE = '<h1><span class="js-timer-minutes">00</span>:<span class="js-timer-seconds">00</span></h1>';
+var ALERT_MESSAGES = 30;
+var LIST_MESSAGES = ["В эту секунду, кто-то строит будущее, а ты читаешь прошлое.",
+                     "Пока ты читаешь эту статью и комментарии к ней, Гвидо пишет новый 'PEP'",
+                     "Мне показалось или ты уже вывел новый проект в production?!",
+                     "Много 'буковок' и не одной знакомой? Пора кодить!",
+                     "В мире много всего интересного, а создавать новые продукты самому, ещё интереснеe!",
+                     "Вроде отдахнул, пора покарять мир!",
+                     "А ты знаешь проблему связанную с GLI, давай её обойдём?",
+                     "Задача по тебе скучает, закрывай страницу.",
+                     "Пора заработать на месяц отпуска в Пхукете! Ай-да со мной!"
+                   ];
 
 function padZero(number){
   return ("00" + String(number)).slice(-2);
@@ -38,6 +49,11 @@ class Timer{
     var secsGone = currentTimestamp - this.timestampOnStart
     return Math.max(this.timeout_in_secs - secsGone, 0)
   }
+  refreshTimer(timeout_in_secs){
+    this.initial_timeout_in_secs = timeout_in_secs
+    this.timestampOnStart = this.getTimestampInSecs()
+    this.timeout_in_secs = this.initial_timeout_in_secs
+  }
 }
 
 class TimerWidget{
@@ -52,8 +68,8 @@ class TimerWidget{
 
     // adds HTML tag to current page
     this.timerContainer = document.createElement('div')
-
-    this.timerContainer.setAttribute("style", "height: 100px;")
+    var valueStyle = "font-family: 'Josefin Sans', sans-serif; position: fixed; z-index: 1; background-color: rgba(238, 238, 238, 0.85); border: 2px solid gray; border-radius: 10px; height: 80px; width: 150px; color: #905; margin: 10px 0px 0px 10px; padding: 0px 10px 0px 35px"
+    this.timerContainer.setAttribute("style", valueStyle)
     this.timerContainer.innerHTML = TEMPLATE
 
     rootTag.insertBefore(this.timerContainer, rootTag.firstChild)
@@ -85,9 +101,17 @@ function main(){
 
   timerWiget.mount(document.body)
 
+  function getMessage(){
+    return LIST_MESSAGES[Math.floor(Math.random() * LIST_MESSAGES.length)];
+  }
+
   function handleIntervalTick(){
     var secsLeft = timer.calculateSecsLeft()
     timerWiget.update(secsLeft)
+    if (secsLeft <= 0) {
+      alert(getMessage());
+      timer.refreshTimer(ALERT_MESSAGES)
+    }
   }
 
   function handleVisibilityChange(){
