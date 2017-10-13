@@ -68,11 +68,12 @@ class TimerWidget{
 
     // adds HTML tag to current page
     this.timerContainer = document.createElement('div')
-    var valueStyle = "font-family: 'Josefin Sans', sans-serif; position: fixed;
-                      z-index: 200; background-color: rgba(238, 238, 238, 0.85);
-                      border: 2px solid gray; border-radius: 10px; height: 80px;
-                      width: 150px; color: #905; margin: 10px 0px 0px 10px;
-                      padding: 0px 10px 0px 35px"
+    var commonStyle = "background-color: rgba(238, 238, 238, 0.85);"
+    var borderStyle = "border: 2px solid gray; border-radius: 10px;"
+    var sizeStyle = "height: 80px; width: 150px;"
+    var textStyle = "font-family: 'Josefin Sans', sans-serif; color: #905;"
+    var positionStyle = "position: fixed; z-index: 200; margin: 10px 0px 0px 10px; padding: 0px 10px 0px 35px"
+    var valueStyle = commonStyle + borderStyle + sizeStyle + textStyle + positionStyle
     this.timerContainer.setAttribute("style", valueStyle)
     this.timerContainer.innerHTML = TEMPLATE
 
