@@ -6,7 +6,7 @@ This project helps to control time was spent on sites. It requires special exten
 
 Install extension for Chrome browser [Custom JavaScript for websites](https://chrome.google.com/webstore/detail/custom-javascript-for-web/poakhlngfciodnhlhhgnaaelnpjljija).
 
-Open configuration of [cjs](https://chrome.google.com/webstore/detail/custom-javascript-for-web/poakhlngfciodnhlhhgnaaelnpjljija) browser extension on the site you want to controll. Click on the link "your own external scripts", add path [https://cdn.rawgit.com/DjaPy/34_timemachine/1141b11c/index.js]. Don`t forget to press "enable cjs for this host" to enable custom JS.
+Open configuration of [cjs](https://chrome.google.com/webstore/detail/custom-javascript-for-web/poakhlngfciodnhlhhgnaaelnpjljija) browser extension on the site you want to controll. Click on the link "your own external scripts", add path [https://cdn.rawgit.com/DjaPy/34_timemachine/3d99a3bf/index.js]. Don`t forget to press "enable cjs for this host" to enable custom JS.
 
 
 On the page in the upper left corner a timer will appear. The timer counts up to 3 minutes. After work timer will appear motivating "alert". After you disable an alert, it starts a timer for 30 seconds. After 30 seconds you will see motivating "alert". So it will be again to exit from the page.
